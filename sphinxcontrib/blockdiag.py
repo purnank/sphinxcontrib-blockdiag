@@ -14,7 +14,7 @@ import os
 import re
 import posixpath
 import traceback
-import pkg_resources
+from importlib import metadata
 from collections import namedtuple
 from docutils import nodes
 from sphinx import addnodes
@@ -312,7 +312,7 @@ def setup(app):
     app.connect("doctree-resolved", on_doctree_resolved)
 
     return {
-        'version': pkg_resources.require('blockdiag')[0].version,
+        'version': metadata.version('blockdiag'),
         'parallel_read_safe': True,
         'parallel_write_safe': True,
     }
